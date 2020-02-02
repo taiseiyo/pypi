@@ -1,0 +1,44 @@
+準備
+
+- pip install wheel,twine
+- pypiのアカウントが無い場合は
+  アカウントを取得する。
+  https://pypi.org/account/register/
+
+- テスト環境のアカウントを取得する
+  https://test.pypi.org/account/register/
+
+- setup.py の作成
+
+- 開発
+  https://github.com/takezyou/pydata
+.
+├── LICENSE.txt
+├── README.md
+├── pydata
+│   ├── __init__.py
+│   ├── command.py
+│   └── list.py
+├── setup.py
+└── tests
+    ├── __init__.py
+    └── test_list.py
+
+- テスト
+  python setup.py test
+  tests 以下に書いておく
+
+- 配布物の作成
+  作成したものをパッケージにする作業
+  python setup.py bdist_wheel
+
+- ホームディレクトリに.pypirc を作成
+
+- テスト環境に先ほど作ったバイナリのパッケージをアップロードする
+  twine upload --repository testpypi dist/*
+
+- テスト環境にアップロードしたパッケージをインストールする
+  pip install --index-url https://test.pypi.org/simple/ <パッケージ名>
+
+- 本番環境にパッケージをアップロード
+  twine upload --repository pypi dist/*
